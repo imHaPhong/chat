@@ -1,7 +1,5 @@
 # Chat-App
 
-[![Release](https://img.shields.io/badge/release-v1.0-green.svg)](https://chat-app.shiro.now.sh/)
-
 ---
 
 ## A simple chat app using ReactJS, NodeJS, MongoDB and Socket.io
@@ -22,7 +20,7 @@
 Login screen
 ![Login](/img/3.png 'Login')
 
-Register Screen
+Upload Screen
 ![Register](/img/4.png 'Register')
 
 Chat screen
@@ -31,13 +29,8 @@ Chat screen
 Chat screen
 ![Chat](/img/2.png 'Chat')
 
-Search for others
-![Chat](/img/5.png 'Chat')
-
 Typing indicator
 ![Chat](/img/6.png 'Chat')
 
-Responsive
-![Chat](/img/7.png 'Chat')
 
 ---
