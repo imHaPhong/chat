@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Simple Sidebar - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/simple-sidebar.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+  
+</style>
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading"><a href="/staff">Staff Manage</a> </div>
+      <div class="list-group list-group-flush">
+        <a href="/staff/StudentClick" class="list-group-item list-group-item-action bg-light">Student</a>
+        <a href="/staff/TutorClick" class="list-group-item list-group-item-action bg-light">Tutor</a>
+        <a href="/staff/AssociateClick" class="list-group-item list-group-item-action bg-light">Associate</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Statistical</a>
+       
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <%- include ('./template/header') -%>
+
+      <div class="container-fluid">
+        <div class="table-reponsive">
+          <div class="table-title">
+              <div class="row">
+                  <div class="col-sm-8"><h2>Table <b>Student</b></h2></div>
+              </div>
+          </div>
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Last Active</th>
+                      <th>Status</th>
+                      <th>Online Status</th>
+                      <th>Edit</th>
+                  </tr>
+              </thead>
+              <tbody>
+                 <% if(listStudent) { %>
+                  <%for(let i = 0; i < listStudent.length; i++){%>
+                    <tr>
+                      <td></td>
+                      <td><%= listStudent[i].name%></td>
+                      <td><%= listStudent[i].active%></td>
+                      <%if(listStudent[i].status.length != 0){%>
+                        <td>assigned</td>
+                      <%} else{%>
+                        <td>-</td>
+                      <%}%>
+                      <%if(listStudent[i].isOnline){%>
+                      <td>Online</td>
+                      <%} else{%>
+                        <td>-</td>
+                        <%}%>
+                      <td>
+            <a class="add" title="" data-toggle="tooltip" data-original-title="Add"><i class="material-icons"></i></a>
+                          <a class="edit" title="" data-toggle="tooltip" data-original-title="Edit"><i class="material-icons"></i></a>
+                          <a class="delete" title="" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons"></i></a>
+                      </td>
+                  </tr>
+                    <%}%>
+                  <%}%>
+              </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-5">
+            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+              Showing 1 to 10 of 57 entries
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-7">
+            <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+              <ul class="pagination">
+                <li class="paginate_button page-item previous disabled" id="dataTable_previous">
+                  <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">
+                    Previous
+                  </a>
+                </li>
+                <li class="paginate_button page-item active">
+                  <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
+                    1
+                  </a>
+                </li>
+                <li class="paginate_button page-item ">
+                  <a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">
+                    2
+                  </a>
+                </li>
+                <li class="paginate_button page-item ">
+                  <a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">
+                    3
+                  </a>
+                </li>
+                <li class="paginate_button page-item ">
+                  <a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">
+                    4
+                  </a>
+                </li>
+                <li class="paginate_button page-item ">
+                  <a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">
+                    5
+                  </a>
+                </li>
+                <li class="paginate_button page-item ">
+                  <a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">
+                    6
+                  </a>
+                </li>
+                <li class="paginate_button page-item next" id="dataTable_next">
+                  <a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">
+                    Next
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    var actions = $("table td:last-child").html();
+    // Append table with add row form on add new button click
+      $(".add-new").click(function(){
+      $(this).attr("disabled", "disabled");
+      var index = $("table tbody tr:last-child").index();
+          var row = '<tr>' +
+              '<td><input type="text" class="form-control" name="name" id="name"></td>' +
+              '<td><input type="text" class="form-control" name="department" id="department"></td>' +
+              '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+        '<td>' + actions + '</td>' +
+          '</tr>';
+        $("table").append(row);		
+      $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+          $('[data-toggle="tooltip"]').tooltip();
+      });
+    // Add row on add button click
+    
+    // Edit row on edit button click
+    $(document).on("click", ".edit", function(){		
+          $(this).parents("tr").find("td:not(:last-child)").each(function(){
+        $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+      });		
+      $(this).parents("tr").find(".add, .edit").toggle();
+      $(".add-new").attr("disabled", "disabled");
+      });
+    // Delete row on delete button click
+    $(document).on("click", ".delete", function(){
+          $(this).parents("tr").remove();
+      $(".add-new").removeAttr("disabled");
+      });
+  });
+  </script>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/staff.js"></script>
+</html>

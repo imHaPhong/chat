@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Simple Sidebar - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/simple-sidebar.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-ekOryaXPbeCpWQNxMwSWVvQ0+1VrStoPJq54shlYhR8HzQgig1v5fas6YgOqLoKz" crossorigin="anonymous">
+  
+ 
+</head>
+
+<body>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">Staff Manage </div>
+      <div class="list-group list-group-flush">
+        <a href="/staff/StudentClick" class="list-group-item list-group-item-action bg-light">Student</a>
+        <a href="/staff/TutorClick" class="list-group-item list-group-item-action bg-light">Tutor</a>
+        <a href="/staff/AssociateClick" class="list-group-item list-group-item-action bg-light">Associate</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Statistical</a>
+       
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <%- include ('./template/header') -%>
+
+      <div class="container-fluid">
+        <div class="row" style="padding-top: 30px;">
+
+          <!-- Earnings (Monthly) Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+              <div class="card-body">
+                  <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tutor Online</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800 numTutor"><%= listStudent%></div>
+                  </div>
+                  <div class="card text-right" style="width: 10rem; left: 10px;">
+                      <a href="/staff/TutorClick" class="btn btn-primary">More</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Earnings (Monthly) Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+              <div class="card-body">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Student Online</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800 numStudent"><%= listStudent%></div>
+                </div>
+                <div class="card text-right" style="width: 10rem; left: 10px;">
+                    <a href="/staff/StudentClick" class="btn btn-success">More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Earnings (Monthly) Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+              <div class="card-body">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Tutors is inactive for 7 days</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%= sNotActive%></div>
+                </div>
+                <div class="card text-right" style="width: 10rem; left: 10px;">
+                    <a href="/staff/studentNotActive" class="btn btn-danger">More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pending Requests Card Example -->
+          <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card-body">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Students is inactive for 7 days</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%= tNotActive%> </div>
+                </div>
+                <div class="card text-right" style="width: 10rem; left: 10px;">
+                    <a href="/staff/tutorNotActive" class="btn btn-warning">More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    <!-- /#page-content-wrapper -->
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    var actions = $("table td:last-child").html();
+    // Append table with add row form on add new button click
+      $(".add-new").click(function(){
+      $(this).attr("disabled", "disabled");
+      var index = $("table tbody tr:last-child").index();
+          var row = '<tr>' +
+              '<td><input type="text" class="form-control" name="name" id="name"></td>' +
+              '<td><input type="text" class="form-control" name="department" id="department"></td>' +
+              '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+        '<td>' + actions + '</td>' +
+          '</tr>';
+        $("table").append(row);		
+      $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+          $('[data-toggle="tooltip"]').tooltip();
+      });
+    // Add row on add button click
+    $(document).on("click", ".add", function(){
+      var empty = false;
+      var input = $(this).parents("tr").find('input[type="text"]');
+          input.each(function(){
+        if(!$(this).val()){
+          $(this).addClass("error");
+          empty = true;
+        } else{
+                  $(this).removeClass("error");
+              }
+      });
+      $(this).parents("tr").find(".error").first().focus();
+      if(!empty){
+        input.each(function(){
+          $(this).parent("td").html($(this).val());
+        });			
+        $(this).parents("tr").find(".add, .edit").toggle();
+        $(".add-new").removeAttr("disabled");
+      }		
+      });
+    // Edit row on edit button click
+    $(document).on("click", ".edit", function(){		
+          $(this).parents("tr").find("td:not(:last-child)").each(function(){
+        $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+      });		
+      $(this).parents("tr").find(".add, .edit").toggle();
+      $(".add-new").attr("disabled", "disabled");
+      });
+    // Delete row on delete button click
+    $(document).on("click", ".delete", function(){
+          $(this).parents("tr").remove();
+      $(".add-new").removeAttr("disabled");
+      });
+  });
+  </script>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/staff.js"></script>
+</html>
