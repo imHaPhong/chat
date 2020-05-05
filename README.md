@@ -21,16 +21,16 @@ Login screen
 ![image](https://user-images.githubusercontent.com/64822110/81095311-09456880-8f2f-11ea-9844-435a3733e47f.png)
 
 Upload Screen
-![Register](/img/4.png 'Register')
+![image](https://user-images.githubusercontent.com/64822110/81095505-4d386d80-8f2f-11ea-8966-f48c49415fe5.png)
 
 Chat screen
-![Chat](/img/1.png 'Chat')
+![image](https://user-images.githubusercontent.com/64822110/81095564-64775b00-8f2f-11ea-814e-e82105ea5f9a.png)
 
-Chat screen
-![Chat](/img/2.png 'Chat')
+Create schedule meeting
+![image](https://user-images.githubusercontent.com/64822110/81095673-912b7280-8f2f-11ea-8bd7-0fc4a8892d6b.png)
 
-Typing indicator
-![Chat](/img/6.png 'Chat')
+List schedule meeting
+![image](https://user-images.githubusercontent.com/64822110/81095808-b5874f00-8f2f-11ea-8ab4-4a986fcbb240.png)
 
 
 ---
