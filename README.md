@@ -18,7 +18,7 @@
 ### Screenshot
 
 Login screen
-![Login](/img/3.png 'Login')
+![image](https://user-images.githubusercontent.com/64822110/81095311-09456880-8f2f-11ea-9844-435a3733e47f.png)
 
 Upload Screen
 ![Register](/img/4.png 'Register')
