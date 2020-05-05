@@ -2,7 +2,7 @@
 
 ---
 
-## A simple chat app using ReactJS, NodeJS, MongoDB and Socket.io
+## A simple chat app using bootstrap, NodeJS, MongoDB and Socket.io
 
 ---
 
