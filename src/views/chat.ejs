@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!--  jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+			<!------ Include the above in your HEAD tag ---------->
+<!------ Include the above in your HEAD tag ---------->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
+
+<script src="https://use.typekit.net/hoy3lrg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+<link rel="stylesheet" href="./css/chat.css">
+</head>
+<body>
+
+
+
+<div id="frame">
+	<div id="left" class="col-2 col-sm-3">
+		<div id="profile">
+			<div class="wrap">
+			
+				<p class="uName"></p>
+			</div>
+
+		</div>
+
+		<div id="search">
+			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+			<input type="text" placeholder="Search..." />
+		</div>
+		<div id="contacts">
+			<ul>
+          
+			</ul>
+		</div>
+		
+	</div>
+	<div id="content" class="col-10 col-sm-7 col-md-6">
+			<div class="contact-profile">
+				
+				<p class="userName"></p>
+			</div>	
+			<div class="messages">
+			<ul class="ulmessages"> 
+			</ul>
+			</div>
+			<div class="message-input">
+				<div class="wrap">
+				<input class='mess' type="text" placeholder="Write your message..." />
+				</div>
+			</div>
+			<div class="upload-file" style="float:right;	">
+				<button type="button" class="btn btn-primary save" data-toggle="modal" data-target="#exampleModal">
+				Upload File
+				</button>
+				<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Upload File</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+							<div class="file-loading">
+								<form action="/upload" method="post" enctype="multipart/form-data">
+								<input id="input-b6" name="input-b6[]" class="file"  multiple type="file">
+							</form>
+							</div>
+							<div id="kartik-file-errors"></div>
+							</div>
+							<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" title="Your custom upload logic">Save</button>
+							</div>
+						</div>
+						</div>
+					</div>
+			</div>
+    </div>
+    <div id="right" class="col-12 col-sm-12 col-md-3 >
+
+			<button style="float: right;" type="button" class="btn btn-default btn-sm">
+				<i class="glyphicon glyphicon-thumbs-up notification"></i> Get help
+			</button><br><br><br>
+			<button style="float: right;" type="button" class="btn btn-default btn-sm">
+				<a href="http://localhost:3000/"><span class="glyphicon glyphicon-log-out">Logout</span></a>
+			  </button><br><br><br>
+			<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+			  <div class="panel-heading">      
+				  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+					<h4 class="panel-title">Shared</h4>
+				  </a>      
+			  </div>
+			  <div id="collapseOne" class="panel-collapse collapse shared">
+				
+			  </div>
+			</div>
+			<div class="panel panel-default">
+			  <div class="panel-heading">      
+				  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+					<h4 class="panel-title">Schedule meeting</h4>
+				  </a>      
+			  </div>
+			  <div id="collapseTwo" class="panel-collapse collapse meeting">
+			  </div>
+			</div>
+			<div class="panel panel-default">
+			  <div class="panel-heading">      
+				<a href="#" class="list-group-item list-group-item-action list-group-item-success" data-toggle="modal" data-target="#exampleModal2">
+					Create schedule meeting</a> 
+				
+				<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">EDIT</h5>
+						
+						
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</div>
+
+						<form method="post" class='schedule'>
+							<div class="form-group"> <!-- Date input -->
+							  <label class="control-label" for="date">Date</label>
+							  <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+							</div>
+							<div style="display: block;" class="form-group">
+								<label for="exampleFormControlTextarea1">Place</label>
+								<textarea class="form-control place" id="exampleFormControlTextarea1" rows="3"></textarea>
+							  </div>
+							  <div class="modal-body">
+								<div class="file-loading">
+									<form action="/upload" method="post" enctype="multipart/form-data">
+									<input id="input-b6" name="input-b6[]" class="fileMeeting"  multiple type="file">
+								</form>
+								<div id="kartik-file-errors"></div>
+								</div>
+								<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary meetingSave" title="Your custom upload logic">Save</button>
+								</div>
+						</form>
+						
+						
+					</div>
+					</div>
+				</div>
+			  </div>
+			 
+	</div>
+			</div>
+	</div>		 
+</div>
+	
+<script>
+// date time
+$(document).ready(function(){
+      var date_input=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+    })
+// end date time
+
+$(document).ready(function () {
+    $('label.tree-toggler').click(function () {
+        $(this).parent().children('ul.tree').toggle(300);
+    });
+});
+// $(document).ready(function() {
+//         $("#input-b6").fileinput({
+//             showUpload: false,
+//             dropZoneEnabled: false,
+//             maxFileCount: 10,
+//             mainClass: "input-group-lg"
+//         });
+//     });
+</script>
+
+<script >$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+
+// function newMessage() {
+// 	message = $(".message-input input").val();
+// 	if($.trim(message) == '') {
+// 		return false;
+// 	}
+// 	$('<li class="sent"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRpyTLMny3Fe3KLsvQpuC7qx0J8pCVz0UrfFiEdBlEyd52EGOf6&usqp=CAU" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+// 	$('.message-input input').val(null);
+// 	$('.contact.active .preview').html('<span>You: </span>' + message);
+// 	$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+// };
+
+$('.submit').click(function() {
+  newMessage();
+});
+
+$(window).on('keydown', function(e) {
+  if (e.which == 13) {
+    newMessage();
+    return false;
+  }
+});
+//# sourceURL=pen.js
+</script>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
+</html>
