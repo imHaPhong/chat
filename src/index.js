@@ -201,6 +201,6 @@ app.get('/', (req, res) => {
     res.render('meeting')
 })
 
-server.listen('1999', () => {
+server.listen(port, () => {
     console.log(`Server is up on port ${port}!`)
 })
