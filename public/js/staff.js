@@ -17,9 +17,9 @@ $( document ).ready(function() {
         $('.noti').html('')
         for (var i = 0; i < listNotifications.length; i ++) {
             if(listNotifications[i].status == 1){
-                $('.noti').append('<a class="dropdown-item d-flex align-items-center" id="'+listNotifications[i]._id+'" href="'+listNotifications[i]._id+'"><div class="customItem"><div class="small text-gray-500">December 2, 2019</div>'+ listNotifications[i].notification + '</div></a>')
+                $('.noti').append('<a class="dropdown-item d-flex align-items-center" id="'+listNotifications[i]._id+'" href="/staff/AssociateClick"><div class="customItem"><div class="small text-gray-500">December 2, 2019</div>'+ listNotifications[i].notification + '</div></a>')
             }else{
-                $('.noti').append('<a class="dropdown-item d-flex align-items-center" id="'+listNotifications[i]._id+'" href="'+listNotifications[i]._id+'"><div><div class="small text-gray-500">December 2, 2019</div>'+ listNotifications[i].notification + '</div></a>')
+                $('.noti').append('<a class="dropdown-item d-flex align-items-center" id="'+listNotifications[i]._id+'" href="/staff/AssociateClick"><div><div class="small text-gray-500">December 2, 2019</div>'+ listNotifications[i].notification + '</div></a>')
             }
         }
     })
@@ -33,5 +33,8 @@ socket.on('userOnline', (data) => {
     $('.numTutor').text(data.listTutor)
     $('.numStudent').text(data.listStudent)
 })
+
+
+   
 //badge-counter
 // noti

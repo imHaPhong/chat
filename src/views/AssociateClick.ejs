@@ -8,13 +8,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Simple Sidebar - Start Bootstrap Template</title>
+  <title>eTutoring</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="../css/simple-sidebar.css" rel="stylesheet">
+  <link href="/../css/simple-sidebar.css" rel="stylesheet">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -38,12 +38,14 @@
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Staff Manage </div>
+      <div class="sidebar-heading"><a href="/staff">Staff Manage</a> </div>
       <div class="list-group list-group-flush">
         <a href="/staff/StudentClick" class="list-group-item list-group-item-action bg-light">Student</a>
         <a href="/staff/TutorClick" class="list-group-item list-group-item-action bg-light">Tutor</a>
         <a href="/staff/AssociateClick" class="list-group-item list-group-item-action bg-light">Associate</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Statistical</a>
+        <a href="/staff/statistical" class="list-group-item list-group-item-action bg-light">Statistical</a>
+        <a href="/staff/statistical/mess" class="list-group-item list-group-item-action bg-light">Message</a>
+       
        
       </div>
     </div>
@@ -51,8 +53,49 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-
-      <%- include ('./template/header') -%>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Staff Manage</button>
+    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Notification <span class="sr-only">(current)</span></a>
+            </li>
+            <!-- Strat notification -->
+            <li class="nav-item dropdown no-arrow mx-1 close">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="flase">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter"></span>
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in noti" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Alerts Center
+                </h6>
+              </div> 
+    
+    
+            </li>
+            <!-- end notufication -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Account
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Login</a>
+                <a class="dropdown-item" href="#">Logout</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Register</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
       <div class="container">
  
@@ -61,12 +104,12 @@
                 <div class="col-sm-6">
                   <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Dropdown
+                      Filter
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <button class="dropdown-item" type="button">Action</button>
-                      <button class="dropdown-item" type="button">Another action</button>
-                      <button class="dropdown-item" type="button">Something else here</button>
+                      <button class="dropdown-item" type="button"><a href="/staff/AssociateClick/NoS">Number of supported</a></button>
+                      <button class="dropdown-item" type="button"><a href="/staff/AssociateClick/name">Name</a></button>
+                      <button class="dropdown-item" type="button"><a href="/staff/AssociateClick/status">Status</a></button>
                     </div>
                   </div>
                 </div>
@@ -157,8 +200,8 @@
       </div>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/../vendor/jquery/jquery.min.js"></script>
+  <script src="/../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   
   <!-- Menu Toggle Script -->
   <script>
@@ -233,5 +276,5 @@
 
   
 </body>
-
+<script src="/js/staff.js"></script>
 </html>

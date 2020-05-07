@@ -3,7 +3,6 @@ const Account = require('../models/account')
 const jwt = require('jsonwebtoken')
 
 const auth = async (req, res, next) => {
-
     try {   
         let tokens = req.headers.cookie
         tokens = tokens.split(';')
@@ -54,7 +53,7 @@ const tutorAuth = async (req, res, next) => {
 const studentAuth = async (req, res, next) => {
     try {
         if(req.role != 1){
-            throw new Error('please authorization 2')
+            throw new Error('please authorization')
         }
         next()
     } catch (error) {

@@ -31,17 +31,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 io.on('connection', (socket) => {  
-    let fileName = ''
     socket.on('login', async (token) => {
-        //socket.name = name
         const decoded = jwt.verify(token, 'abc')
         const {_id, role} = decoded
         const account = await Account.findById(_id)
         socket.userid = account._id
         socket.userName = account.name
         socket.role = account.role
-        console.log(role);
-        
         if(role != 3){
             const account = await Account.findById(_id)
             account.isOnline = true
@@ -52,13 +48,13 @@ io.on('connection', (socket) => {
             for(let i = 0; i < students.length; i++){
                 await students[i].populate('to').execPopulate()
             }
-    
+            socket.emit('getUser', account)
             let listStudent = []
             students.forEach(student => listStudent.push({'reciever':student.to._id, 'name': student.to.name})) 
             socket.emit('updateStudent', listStudent)
             socket.join(socket.userid)
             //console.log()
-            socket.emit('loadUser', {user: listStudent[0], message: students[0].message})
+            socket.emit('loadUser', {user: listStudent[0], message: students[0].message, meeting: account})
             account.active = new Date()
             await account.save()
             
@@ -81,6 +77,7 @@ io.on('connection', (socket) => {
             }
         })
         io.sockets.emit('userOnline', {listTutor: tutorOnline.length, listStudent: studentOnline.length})
+
     })
 
     socket.on('sendMessage', async (data, link, to) => {     
@@ -100,14 +97,14 @@ io.on('connection', (socket) => {
         receiver.message = receiver.message.concat({message: data, time: new Date, status: 1, link});
         await message.save()
         await receiver.save()
-    })
+    }) 
     socket.on('chat', async (id) => {
+        console.log('id');
         const message = await Message.find({from: socket.userid, to: id})  
         await message[0].populate('to').execPopulate()         
         socket.emit('changeUser', { id, message: message[0].message, 'name': message[0].to.name})
     })
     socket.on('sendFile', async ({name, file, to}) => {     
-        //let dir = './uploads/' + new Date().getTime() + name 
         fs.writeFile(fileName, file, (err) => {
             if(err){
                 console.log(err)
@@ -124,8 +121,6 @@ io.on('connection', (socket) => {
     })
 
     socket.on('notication',async () => {
-        console.log('alo');
-        
         const account = await Account.findById(socket.userid)             
         const notification = 'Student ' + account.name + ' has requested to help' 
         let staff = await Staff({notification, studentId: socket.userid})
@@ -146,7 +141,21 @@ io.on('connection', (socket) => {
         const listNotifications = await Staff.find()
         io.sockets.emit('sendNotification', {listNotifications})
     })
-
+    socket.on('addMeeting', async ({day, place, partner ,name, file}) => {
+        const redirect = './uploads/' + new Date().getTime() + name
+        const mlink = './download/' + new Date().getTime() + name 
+        fs.writeFile(redirect, file, (err) => {
+            if(err){
+                console.log(err)
+            }
+        })
+        const sender = await Account.findById(socket.userid)
+        const receiver = await Account.findById(partner)
+        sender.meetings = sender.meetings.concat({date:day,partner, place,file: mlink})
+        receiver.meetings = receiver.meetings.concat({date: day,"partner" : socket.userid, place,file: mlink})
+        await sender.save()
+        await receiver.save()
+    })
     socket.on('disconnect', async function () {
         const user = await Account.findById(socket.userid)
         if(user.isOnline){
@@ -168,6 +177,64 @@ io.on('connection', (socket) => {
         })
         io.sockets.emit('userOnline', {listTutor: tutorOnline.length, listStudent: studentOnline.length})
     });
+    
+    socket.on('con', async () => {
+        var curr = new Date; // get current date
+        var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+        var last = first + 6; // last day is the first day + 6
+
+        var firstday = new Date(curr.setDate(first)).toUTCString()
+        var lastday = new Date(curr.setDate(last)).toUTCString()
+        firstday = Date.parse(firstday)
+        lastday = Date.parse(lastday)
+        const account = await Account.find()
+        var users =  []
+        
+        let c = ''
+        account.forEach(acc => {
+           c = Date.parse(acc.active.toUTCString())
+            if(firstday < c && c < lastday){
+                users.push(acc)
+            }
+        })
+        var result = [[],[]]
+        var days = []
+        for(let i = firstday; i<= lastday; i += 1 * 24 * 60 * 60 * 1000){
+            days.push(i)
+        }
+        days.forEach(day => {
+            let num = 0
+            for(let i = 0; i < users.length; i++) {
+                if(new Date(day).getDay() == new Date(users[i].active).getDay()){
+                    num++
+                }
+            }
+            
+            result[0].push(new Date(day).toUTCString())
+            result[1].push(num)
+        })
+        socket.emit('res', result)
+    })
+    socket.on('bcon', async () => {
+        const mess = await Message.find().populate('from')
+        var lTutor = [[],[]]
+        mess.forEach(m => {
+            if(m.from.role == 2){
+                let sent = 1
+                let receiver = 1
+                for(let i = 0; i < m.message.length; i++){
+                    if(m.message[i].status == 1){
+                        sent++
+                    }else{
+                        receiver++
+                    }                }
+                lTutor[0].push(sent/receiver)
+                lTutor[1].push(m.from.name)
+            }
+            
+        })
+        socket.emit('barChart', lTutor)
+    })
 })
 
  
@@ -201,6 +268,6 @@ app.get('/', (req, res) => {
     res.render('meeting')
 })
 
-server.listen('1999', () => {
+server.listen(port, () => {
     console.log(`Server is up on port ${port}!`)
 })
