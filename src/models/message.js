@@ -1,15 +1,16 @@
 const mongoose = require('mongoose')
 
 const messageSchema = new mongoose.Schema({
+    _id: { type: mongoose.Schema.ObjectId, auto: true },
     from: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Account'
+        ref: 'account'
     },
     to: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Account'
+        ref: 'account'
     },
     message: [
         {
@@ -32,7 +33,7 @@ const messageSchema = new mongoose.Schema({
     document: []
 })
 
-const Message = mongoose.model('Message', messageSchema)
+const Message = mongoose.model('messages', messageSchema, 'messages')
 
 
 module.exports = Message

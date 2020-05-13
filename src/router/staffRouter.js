@@ -86,7 +86,7 @@ router.post('/getData',async (req, res) => {
         send2Student(sStudent.name, sTutor.email)
     }
 
-    res.redirect('http://localhost:3000/staff/AssociateClick')
+    res.redirect('/staff/AssociateClick')
 })
 
 
