@@ -32,7 +32,7 @@ const messageSchema = new mongoose.Schema({
     document: []
 })
 
-const Message = mongoose.model('Message', messageSchema)
+const Message = mongoose.model('messages', messageSchema, 'messages')
 
 
 module.exports = Message
