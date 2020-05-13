@@ -47,5 +47,4 @@ exports.studentClick = async (req, res) => {
 exports.tutorClick = async (req, res) => {
     const listStudent = await Account.find({role:'2'})
     res.render('TutorClick', {listStudent})
-    //console.log(listStudent[0].status.length)
 }

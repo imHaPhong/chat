@@ -27,7 +27,6 @@ router.post('/', async (req, res) => {
             return false;
         }
     }
-
     if(validateMail(email)){
         res.render('login', {mess: true, data: "email is not validate"})
     } else {
@@ -47,8 +46,9 @@ router.post('/', async (req, res) => {
            }
         } else {
             try {
-               
                 const account = await Account.findByCredentials(email,password,role)
+                console.log(account);
+                
                 const token = await account.generateAuthToken()
                 res.cookie('token', token)
                 res.render('chat', {token: "tokens"})
@@ -58,6 +58,5 @@ router.post('/', async (req, res) => {
         }
     }
 })
-
 
 module.exports = router

@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const accountSchema = new mongoose.Schema({
+    _id: { type: mongoose.Schema.ObjectId, auto: true },
     name: {type: String, required: true},
     email: {type: String,required: true,unique: true},
     password: {type: String,required: true}, 
@@ -68,7 +69,7 @@ accountSchema.pre('save', async function (next) {
     next()
 })
 
-const Account = mongoose.model('Account', accountSchema)
+const Account = mongoose.model('account', accountSchema, 'account')
 
 
 module.exports = Account
